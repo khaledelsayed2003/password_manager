@@ -20,44 +20,56 @@ Together, these components create a smooth, fast, and secure password management
 password_manager/
 ├─ assets/
 │   └─ logo.png
+│   └─ app_preview.png
+│   └─ password_generation.png
+│   └─ warning_popup.png
+│   └─ confirmation_popup.png
+│   └─ saved_data.png
 │
 ├─ password_generator.py      # Password creation logic
 ├─ main.py                    # Tkinter UI + Save workflow
 ├─ data.txt                   # Auto-generated credentials file
 └─ README.md
 
+--- 
+
 ##✨ Features
-🔑 Generate strong passwords with random letters, numbers, and symbols
+-🔑 Generate strong passwords with random letters, numbers, and symbols
 
-📋 Auto-copy generated password using pyperclip
+-📋 Auto-copy generated password using pyperclip
 
-💾 Save credentials (Website | Email | Password) to data.txt
+-💾 Save credentials (Website | Email | Password) to data.txt
 
-⚠️ Pop-up alerts for empty fields and confirmation before saving
+-⚠️ Pop-up alerts for empty fields and confirmation before saving
 
-🧠 Smart UX with pre-filled email and auto-focus on website input
+-🧠 Smart UX with pre-filled email and auto-focus on website input
+
+---
 
 ##⚙️ Setup & Usage
-📦 Requirements
-Python 3.8+
-Install the required library:
-pip install pyperclip
+####📦 Requirements
+-Python 3.8+
+-Install the required library: pip install pyperclip
 
+---
 
 ##🧰 Technologies Used
-Purpose	Library
-GUI	Tkinter
-Clipboard	Pyperclip
-Password Generation	Random, String
-File Handling	Python Built-ins
+Purpose	                                Library
+GUI	                                    Tkinter
+Clipboard	                            Pyperclip
+Password_Generation	                 Random, String
+File_Handling	                    Python Built-ins
 
+
+---
 
 ##👨‍💻 Author
 Khaled Elsayed
-Built with ❤️ using Python, Tkinter, and modular GUI design principles for a clean, secure, and efficient experience.
+-Built with ❤️ using Python, Tkinter, and modular GUI design principles for a clean, secure, and efficient experience.
 
 ##📄 License
 This project is for educational and personal use.
 © 2025 – Khaled Elsayed.
 
+---
 ##“Where simplicity meets security — one password at a time.”
