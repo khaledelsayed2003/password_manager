@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+import pyperclip
+from password_generator import generate_password
 
 FONT_NAME = "Courier"
 entry_style = {
@@ -10,7 +12,14 @@ entry_style = {
     "font": (FONT_NAME, 10, "bold")
 }
 
-# ---------------------------SAVE DATA INTO txt FILE & clear the entry textbox---------------------------------------
+# inster the generated pass into the pass entry.
+def fill_generated_password():
+    pwd = generate_password()      # get the string
+    pyperclip.copy(pwd)       # to copy it immediately for faster paste into the desired website.
+    password_entry.delete(0, END)  # clear the pass entry from any text if there.
+    password_entry.insert(0, pwd)  # put it into the Entry
+    
+# --------------------------SAVE DATA INTO txt FILE & clear the entry textbox---------------------------------------
 def save():
     # get hold of the entry datas.
     website_info = website_entry.get()
@@ -73,7 +82,7 @@ password_label.grid(column=0, row=3)
 password_entry = Entry(**entry_style)
 password_entry.grid(column=1, row=3, sticky="we", pady=3)
 
-password_gen_button = Button(text="Generate Password", fg="#0000CD", bg="#F0FFFF", font=(FONT_NAME, 10, "bold"))
+password_gen_button = Button(text="Generate Password",command= fill_generated_password, fg="#0000CD", bg="#F0FFFF", font=(FONT_NAME, 10, "bold"))
 password_gen_button.grid(column=2, row=3, padx=5)
 
 add_button = Button(text="Add", fg="#006400", bg="#98FB98", command= save, font=(FONT_NAME, 10, "bold"))
