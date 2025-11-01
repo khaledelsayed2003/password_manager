@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 FONT_NAME = "Courier"
 entry_style = {
@@ -16,16 +17,29 @@ def save():
     email_info = email_entry.get()
     pass_info = password_entry.get()
     
-    # save them into txt file.
-    with open("password_manager/data.txt", "a") as file:
-        file.write(f"{website_info} | {email_info} | {pass_info} \n")
-        
-    # clear the textbox.
-    website_entry.delete(0, 'end')
-    password_entry.delete(0, 'end')
+    # popup message to warn for empty fields.
+    if len(website_info) == 0 or len(email_info) == 0 or len(pass_info) == 0:
+        warning_message = messagebox.showwarning(title="Oops!....Empty fields!", message="Please don't leave any fields empty!")
+    else:
+        # popup message to confirm the info.
+        is_ok = messagebox.askokcancel(title= website_info, message=(
+            f"Please confirm the following details:\n\n"
+            f"📧 Email: {email_info}\n"
+            f"🔑 Password: {pass_info}\n\n"
+            f"Do you want to save this information?"
+        ))
     
-    # restart the cursor focus(reset input fields).
-    website_entry.focus()
+        if is_ok:
+            # save them into txt file.
+            with open("password_manager/data.txt", "a") as file:
+                file.write(f"{website_info} | {email_info} | {pass_info} \n")
+        
+            # clear the textbox.
+            website_entry.delete(0, 'end')
+            password_entry.delete(0, 'end')
+    
+            # restart the cursor focus(reset input fields).
+            website_entry.focus()
 
 # ----------------------------UI SETUP-------------------------------------
 window = Tk()
