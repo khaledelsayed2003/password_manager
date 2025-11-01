@@ -9,7 +9,25 @@ entry_style = {
     "font": (FONT_NAME, 10, "bold")
 }
 
+# ---------------------------SAVE DATA INTO txt FILE & clear the entry textbox---------------------------------------
+def save():
+    # get hold of the entry datas.
+    website_info = website_entry.get()
+    email_info = email_entry.get()
+    pass_info = password_entry.get()
+    
+    # save them into txt file.
+    with open("password_manager/data.txt", "a") as file:
+        file.write(f"{website_info} | {email_info} | {pass_info} \n")
+        
+    # clear the textbox.
+    website_entry.delete(0, 'end')
+    password_entry.delete(0, 'end')
+    
+    # restart the cursor focus(reset input fields).
+    website_entry.focus()
 
+# ----------------------------UI SETUP-------------------------------------
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50)
@@ -44,7 +62,7 @@ password_entry.grid(column=1, row=3, sticky="we", pady=3)
 password_gen_button = Button(text="Generate Password", fg="#0000CD", bg="#F0FFFF", font=(FONT_NAME, 10, "bold"))
 password_gen_button.grid(column=2, row=3, padx=5)
 
-add_button = Button(text="Add", fg="#006400", bg="#98FB98", font=(FONT_NAME, 10, "bold"))
+add_button = Button(text="Add", fg="#006400", bg="#98FB98", command= save, font=(FONT_NAME, 10, "bold"))
 add_button.grid(column=1, row=4, sticky="ew", columnspan=2)
 
 
