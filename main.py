@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import pyperclip
+import json
 from password_generator import generate_password
 
 FONT_NAME = "Courier"
@@ -19,12 +20,19 @@ def fill_generated_password():
     password_entry.delete(0, END)  # clear the pass entry from any text if there.
     password_entry.insert(0, pwd)  # put it into the Entry
     
-# --------------------------SAVE DATA INTO txt FILE & clear the entry textbox---------------------------------------
+# --------------------------SAVE DATA INTO json FILE & clear the entry textbox---------------------------------------
 def save():
     # get hold of the entry datas.
     website_info = website_entry.get()
     email_info = email_entry.get()
     pass_info = password_entry.get()
+    
+    new_data = {
+        website_info: {
+            "email": email_info,
+            "password": pass_info
+        }
+    }
     
     # popup message to warn for empty fields.
     if len(website_info) == 0 or len(email_info) == 0 or len(pass_info) == 0:
@@ -39,16 +47,24 @@ def save():
         ))
     
         if is_ok:
-            # save them into txt file.
-            with open("password_manager/data.txt", "a") as file:
-                file.write(f"{website_info} | {email_info} | {pass_info} \n")
+            # save them into json file.
+            try:
+                with open("password_manager/data.json", "r") as file:
+                    data = json.load(file)
+            except FileNotFoundError:
+                with open("password_manager/data.json", "w") as file:
+                    json.dump(new_data, file, indent=4)
+            else:
+                data.update(new_data)
+                with open("password_manager/data.json", "w") as file:
+                    json.dump(data, file, indent=4)
+            finally:
+                # clear the textbox.
+                website_entry.delete(0, 'end')
+                password_entry.delete(0, 'end')
         
-            # clear the textbox.
-            website_entry.delete(0, 'end')
-            password_entry.delete(0, 'end')
-    
-            # restart the cursor focus(reset input fields).
-            website_entry.focus()
+                # restart the cursor focus(reset input fields).
+                website_entry.focus()
 
 # ----------------------------UI SETUP-------------------------------------
 window = Tk()
