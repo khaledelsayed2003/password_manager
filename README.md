@@ -1,17 +1,16 @@
-# 🔐 Password Manager  
-### A Lightweight Tkinter-Based Desktop App for Secure Password Creation & Storage  
-### A simple, modular, and secure tool to generate, copy, and save credentials efficiently.  
+# 🔐 Password Manager (Tkinter + JSON)
+
+A simple Python GUI app that helps you **generate, save, and search passwords** safely using **Tkinter** and **JSON**.
 
 ---
 
-## 🧭 Overview  
-This project is a **Password Manager** built using **Python** and **Tkinter** that allows users to **generate**, **copy**, and **store** secure passwords locally.  
-It integrates **clipboard functionality**, **user-friendly GUI**, and **data saving** features in one clean design.  
+## 🌿 Features
 
-- The **Password Generator** creates strong, randomized passwords using letters, digits, and symbols.  
-- The **Main Application (UI)** handles user interaction, clipboard copy, and saving credentials to a text file.  
-
-Together, these components create a smooth, fast, and secure password management experience.  
+- Generate strong random passwords  
+- Save website, email, and password info in a JSON file  
+- Search for stored passwords easily  
+- Copy generated passwords automatically  
+- Handle missing files and empty fields safely  
 
 ---
 
@@ -19,32 +18,21 @@ Together, these components create a smooth, fast, and secure password management
 ```bash
 password_manager/
 ├─ assets/
-│   └─ logo.png
-│   └─ app_preview.png
-│   └─ password_generation.png
-│   └─ warning_popup.png
-│   └─ confirmation_popup.png
-│   └─ saved_data.png
+│  ├─ logo.png
+│  ├─ app_preview.png
+│  ├─ password_generation.png
+│  ├─ details_found.png
+│  ├─ details_not_found.png
+│  ├─ warning_popup.png
+│  ├─ confirmation_popup.png
+│  ├─ file_not_found.png
+│  └─ saved_data(json).png
 │
-├─ password_generator.py      # Password creation logic
-├─ main.py                    # Tkinter UI + Save workflow
-├─ data.txt                   # Auto-generated credentials file
-└─ README.md
+├─ main.py                # Main Tkinter app (save & search logic)
+├─ password_generator.py  # Password generator function
+└─ README.md              # Project documentation
 
 --- 
-
-##✨ Features
--🔑 Generate strong passwords with random letters, numbers, and symbols
-
--📋 Auto-copy generated password using pyperclip
-
--💾 Save credentials (Website | Email | Password) to data.txt
-
--⚠️ Pop-up alerts for empty fields and confirmation before saving
-
--🧠 Smart UX with pre-filled email and auto-focus on website input
-
----
 
 ##⚙️ Setup & Usage
 ####📦 Requirements
@@ -54,12 +42,31 @@ password_manager/
 ---
 
 ##🧰 Technologies Used
-Purpose	                                Library
-GUI	                                    Tkinter
-Clipboard	                            Pyperclip
-Password_Generation	                 Random, String
-File_Handling	                    Python Built-ins
+Purpose	                |                Library
+GUI	                    |               Tkinter
+Clipboard	            |                Pyperclip
+Password_Generation	    |             Random, String
+File_Handling	        |            Python Built-ins
 
+---
+
+##🧩 How to Use
+###➕ Add a Password
+
+-Fill in Website, Email, and Password fields
+
+-Click Add → info is saved to data.json
+
+
+###🎲 Generate a Password
+
+-Click Generate Password → a random password is created and copied to clipboard
+
+
+
+###🔍 Find a Password
+
+-Enter the website name and click Search → the app shows stored credentials
 
 ---
 
