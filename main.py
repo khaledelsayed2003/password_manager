@@ -65,12 +65,31 @@ def save():
         
                 # restart the cursor focus(reset input fields).
                 website_entry.focus()
-
+                
+                
+                
+# --------------------------Search for the user info for specific website in the json file---------------------------------------
+def find_password():
+    try:
+        with open("password_manager/data.json", "r") as file:
+            data = json.load(file)
+            website_info = website_entry.get()
+        try:
+            searched_website = data[website_info]
+            obtained_info = messagebox.showinfo(title=website_info, message=(
+            f"📧 Email: {searched_website['email']}\n\n"
+            f"🔑 Password: {searched_website['password']}\n\n"
+        ))
+        except KeyError:
+            website_not_found = messagebox.showinfo(title="Oops!....Website not found!", message=f"No details for {website_info} exists.")
+              
+    except FileNotFoundError:
+        file_not_found = messagebox.showinfo(title="Oops!....File not found!", message="The file that are you searching in is not exist!")
+            
 # ----------------------------UI SETUP-------------------------------------
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50)
-
 
 
 canvas = Canvas(width=200, height=200)
@@ -82,8 +101,11 @@ website_label = Label(text="Website:", font=(FONT_NAME, 10, "bold"))
 website_label.grid(column=0, row=1)
 
 website_entry = Entry(**entry_style)
-website_entry.grid(column=1, row=1, sticky="ew", columnspan=2, pady=3)
+website_entry.grid(column=1, row=1, sticky="ew", pady=3)
 website_entry.focus()
+
+search_button = Button(text="Search", command= find_password, font=(FONT_NAME, 10, "bold"), fg="#63250b", bg="#F0FFFF")
+search_button.grid(column=2, row=1, sticky="ew", pady=3, padx=3)
 
 email_label = Label(text="Email/Username:", font=(FONT_NAME, 10, "bold"))
 email_label.grid(column=0, row=2)
@@ -102,8 +124,7 @@ password_gen_button = Button(text="Generate Password",command= fill_generated_pa
 password_gen_button.grid(column=2, row=3, padx=5)
 
 add_button = Button(text="Add", fg="#006400", bg="#98FB98", command= save, font=(FONT_NAME, 10, "bold"))
-add_button.grid(column=1, row=4, sticky="ew", columnspan=2)
-
+add_button.grid(column=1, row=4, sticky="ew", columnspan=2, pady=3)
 
 
 
